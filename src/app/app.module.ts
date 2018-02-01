@@ -14,7 +14,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
-import { OdooComponent } from './odoo/odoo.component';
 import { OdooRPCService } from 'angular4-odoo-jsonrpc';
 import { Http } from '@angular/http/src/http';
 import { HttpModule } from '@angular/http';
@@ -29,7 +28,6 @@ import { SharedModule } from './shared/shared.module';
     ProductComponent,
     PageNotFoundComponent,
     ProductDetailsComponent,
-    OdooComponent
   ],
   imports: [
     BrowserModule,
