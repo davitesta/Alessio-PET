@@ -14,6 +14,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
+import { OdooComponent } from './odoo/odoo.component';
+import { OdooRPCService } from 'angular4-odoo-jsonrpc';
+import { Http } from '@angular/http/src/http';
+import { HttpModule } from '@angular/http';
+import { SharedModule } from './shared/shared.module';
+
 
 @NgModule({
   declarations: [
@@ -22,17 +28,20 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
     ProductsListComponent,
     ProductComponent,
     PageNotFoundComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    OdooComponent
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     HttpClientModule,
     HttpClientInMemoryWebApiModule.forRoot(
       InMemoryDataService, { dataEncapsulation: false }
     ),
-    AppRoutingModule
+    AppRoutingModule,
+    SharedModule
   ],
-  providers: [ProductService],
+  providers: [ProductService, OdooRPCService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

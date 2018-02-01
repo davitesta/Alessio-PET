@@ -22,10 +22,10 @@ export class ProductService {
     console.log(`Getting product ${id}...`)
     return this.getProductsList()
       .map((res) => {
-        let product = res.items.filter(item => item.id == id);
-        return new Product(product[0].id,
-          product[0].name,
-          product[0].description)
+        let item = res.items.filter(item => item.id == id);
+        return new Product(item[0].id,
+          item[0].name,
+          item[0].description)
       })
   }
 
