@@ -3,11 +3,11 @@ import { Router } from '@angular/router';
 import { Product } from '../../models/product.model';
 
 @Component({
-  selector: 'app-product',
-  templateUrl: './product.component.html',
-  styleUrls: ['./product.component.css']
+  selector: 'app-product-item',
+  templateUrl: './product-item.component.html',
+  styleUrls: ['./product-item.component.css']
 })
-export class ProductComponent implements OnInit {
+export class ProductItemComponent implements OnInit {
 
   @Input() item: Product;
 
@@ -20,7 +20,5 @@ export class ProductComponent implements OnInit {
     console.log(`Going to product ${this.item.id} details...`)
     this.router.navigate(['/product', this.item.id])
   }
-
-
 
 }
