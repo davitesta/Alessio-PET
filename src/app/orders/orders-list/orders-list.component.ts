@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { OrdersList } from '../../models/orders-list.model';
 
 @Component({
   selector: 'app-orders-list',
@@ -7,7 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class OrdersListComponent implements OnInit {
 
-  @Input() ordersList: any;
+  @Input() ordersList: OrdersList;
 
   constructor() { }
 

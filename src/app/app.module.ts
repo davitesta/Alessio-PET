@@ -3,9 +3,6 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService } from './services/in-memory-data.service';
-import { HttpClientModule } from '@angular/common/http';
 import { ProductService } from './services/product.service';
 import { RouterModule, Routes } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
@@ -14,8 +11,7 @@ import { OdooRPCService } from 'angular4-odoo-jsonrpc';
 import { Http } from '@angular/http/src/http';
 import { HttpModule } from '@angular/http';
 import { SharedModule } from './shared/shared.module';
-import { ProductModule } from './product/product.module';
-import { ProductRoutingModule } from './product/product-routing.module';
+import { OrdersService } from './services/orders.service';
 
 
 @NgModule({
@@ -26,14 +22,10 @@ import { ProductRoutingModule } from './product/product-routing.module';
   imports: [
     BrowserModule,
     HttpModule,
-    HttpClientModule,
-    HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryDataService, { dataEncapsulation: false }
-    ),
     AppRoutingModule,
-    SharedModule
+    SharedModule,
   ],
-  providers: [ProductService, OdooRPCService],
+  providers: [ProductService, OrdersService, OdooRPCService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

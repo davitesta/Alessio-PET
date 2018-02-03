@@ -9,7 +9,7 @@ import { ProductService } from '../../services/product.service';
 })
 export class ProductDetailsComponent implements OnInit {
 
-  id: number;
+  id: string;
   item: any;
 
   constructor(route: ActivatedRoute,

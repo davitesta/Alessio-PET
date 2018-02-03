@@ -6,10 +6,9 @@ import { ProductsList } from '../models/products-list.model';
 import 'rxjs/add/operator/map';
 import { OdooRPCService } from 'angular4-odoo-jsonrpc';
 
+
 @Injectable()
 export class ProductService {
-
-  productsUrl = "api/productsList";
 
   constructor(private odooRPC: OdooRPCService) {
     this.odooRPC.init({
