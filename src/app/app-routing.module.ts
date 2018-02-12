@@ -2,11 +2,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { CartComponent } from './cart/cart.component';
 
 const routes: Routes = [
   { path: 'home', loadChildren: './home/home.module#HomeModule' },
   { path: 'product/:id', loadChildren: './product/product.module#ProductModule' },
   { path: 'orders', loadChildren: './orders/orders.module#OrdersModule' },
+  { path: 'cart', component: CartComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent },
 ]

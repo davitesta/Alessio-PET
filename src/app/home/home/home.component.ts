@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsList } from '../../models/products-list.model';
-import { ProductService } from '../../services/product.service';
+import { OdooService } from '../../services/odoo.service';
 
 @Component({
   selector: 'app-home',
@@ -11,10 +11,10 @@ export class HomeComponent implements OnInit {
 
   productsList: ProductsList;
 
-  constructor(private productService: ProductService) { }
+  constructor(private odoo: OdooService) { }
 
   ngOnInit() {
-    this.productService.getProductsList()
+    this.odoo.getProductsList()
       .subscribe((res) => {
         console.log(`Products list: `, res)
         this.productsList = res;

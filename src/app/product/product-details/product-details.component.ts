@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { ProductService } from '../../services/product.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { OdooService } from '../../services/odoo.service';
+import { Product } from '../../models/product.model';
 
 @Component({
   selector: 'app-product-details',
@@ -10,25 +11,31 @@ import { ProductService } from '../../services/product.service';
 export class ProductDetailsComponent implements OnInit {
 
   id: string;
-  item: any;
+  item: Product;
 
   constructor(route: ActivatedRoute,
-    private productService: ProductService) {
+    private odoo: OdooService,
+    private router: Router) {
     route.params
-      .subscribe(params => {
-        this.id = params.id
+      .subscribe(res => {
+        this.id = res.id
       })
   }
 
   ngOnInit() {
-    this.productService.getProduct(this.id)
+    this.odoo.getProduct(this.id)
       .subscribe(res => {
         console.log(`Product ${this.id}: `, res)
         this.item = res
       })
   }
 
-  ngOnChanges() {
+  clickHandler() {
+    this.odoo.addToCart(this.item)
+      .subscribe((res) => {
+        console.log('Shopping cart updated: ', res);
+        this.router.navigate(['/cart'])
+      })
   }
 
 }

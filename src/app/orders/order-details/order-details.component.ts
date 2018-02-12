@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { OrdersService } from '../../services/orders.service';
+import { OdooService } from '../../services/odoo.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -13,7 +13,7 @@ export class OrderDetailsComponent implements OnInit {
   item: any;
 
   constructor(route: ActivatedRoute,
-    private ordersService: OrdersService) {
+    private odoo: OdooService) {
     route.params
       .subscribe(params => {
         this.id = params.id
@@ -21,7 +21,7 @@ export class OrderDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.ordersService.getOrder(this.id)
+    this.odoo.getOrder(this.id)
       .subscribe(res => {
         console.log(`Order of product ${this.id}: `, res)
         this.item = res

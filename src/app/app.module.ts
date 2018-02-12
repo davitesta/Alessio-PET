@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 
-import { ProductService } from './services/product.service';
+import { OdooService } from './services/odoo.service';
 import { RouterModule, Routes } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
@@ -11,13 +11,14 @@ import { OdooRPCService } from 'angular4-odoo-jsonrpc';
 import { Http } from '@angular/http/src/http';
 import { HttpModule } from '@angular/http';
 import { SharedModule } from './shared/shared.module';
-import { OrdersService } from './services/orders.service';
+import { CartComponent } from './cart/cart.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     PageNotFoundComponent,
+    CartComponent,
   ],
   imports: [
     BrowserModule,
@@ -25,7 +26,7 @@ import { OrdersService } from './services/orders.service';
     AppRoutingModule,
     SharedModule,
   ],
-  providers: [ProductService, OrdersService, OdooRPCService],
+  providers: [OdooService, OdooRPCService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

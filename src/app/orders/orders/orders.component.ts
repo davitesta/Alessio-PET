@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductService } from '../../services/product.service';
-import { OrdersService } from '../../services/orders.service';
+import { OdooService } from '../../services/odoo.service';
 import { OrdersList } from '../../models/orders-list.model';
 
 @Component({
@@ -12,8 +11,8 @@ export class OrdersComponent implements OnInit {
 
   ordersList: OrdersList;
 
-  constructor(private ordersService: OrdersService) {
-    this.ordersList = this.ordersService.ordersList;
+  constructor(private odoo: OdooService) {
+    this.ordersList = this.odoo.ordersList;
   }
 
   ngOnInit() {
