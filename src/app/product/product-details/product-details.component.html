@@ -1,7 +1,3 @@
-<div>
-  {{item?.id}}<br>
-  {{item?.name}}<br>
-  {{item?.description}}<br><br>
+<div *ngIf="item">
+  {{item | json}}
 </div>
-
-<button (click)="clickHandler()">Add to cart</button>

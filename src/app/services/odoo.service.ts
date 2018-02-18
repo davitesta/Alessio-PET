@@ -59,7 +59,7 @@ export class OdooService {
     })
   }
 
-  getProduct(id): Observable<Product> {
+  getProduct(id): Observable<Product> {   //più correttamente da eseguire con una chiamata ad Odoo
     console.log(`Getting product ${id}...`)
     return this.getProductsList()
       .map((res) => {
@@ -85,7 +85,7 @@ export class OdooService {
 
   getShoppingCart(): Observable<ProductsList> {
     return new Observable((observer => {
-      this.odooRPC.call('sale.order', 'search_read', [[['state', '=', 'draft']]], {})
+      this.odooRPC.call('sale.order.line', 'search_read', [[['state', '=', 'draft']]], {})
         .then((res) => {
           console.log('Odoo Shopping cart: ', res);
           observer.next(res);
@@ -95,21 +95,26 @@ export class OdooService {
     })
   }
 
-  addToCart(product): Observable<any> {
+  addToCart(item, qty): Observable<any> {
     return new Observable((observer) => {
       this.odooRPC.call('sale.order', 'create', [{
-        //'currency_id': 1,
-        //'date_order': "2018-02-10 17:21:48",
-        //'name': "SO005",
         'partner_id': 3,
-        //'partner_invoice_id': 3,
-        //'partner_shipping_id': 3,
-        //'picking_policy': "direct",
-        //'pricelist_id': 1,
-        //'warehouse_id': 1
       }], {})
-        .then(res => {
-          observer.next(res);
+        .then(orderId => {
+          console.log(`Created order ${orderId}`);
+          this.odooRPC.call('sale.order.line', 'create', [{
+            'product_uom': 1,
+            'product_uom_qty': qty,
+            'order_id': orderId,
+            'product_id': item.id
+          }], {})
+            .then(orderLineId => {
+              console.log(`Created order line ${orderLineId}`);
+              observer.next({
+                orderId: orderId,
+                orderLineId: orderLineId
+              });
+            })
         })
     })
   }

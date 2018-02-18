@@ -11,14 +11,11 @@ import { OdooRPCService } from 'angular4-odoo-jsonrpc';
 import { Http } from '@angular/http/src/http';
 import { HttpModule } from '@angular/http';
 import { SharedModule } from './shared/shared.module';
-import { CartComponent } from './cart/cart.component';
-
 
 @NgModule({
   declarations: [
     AppComponent,
     PageNotFoundComponent,
-    CartComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { ProductsList } from '../models/products-list.model';
-import { ActivatedRoute } from '@angular/router';
-import { Product } from '../models/product.model';
-import { OdooService } from '../services/odoo.service';
+import { Component, OnInit, SimpleChanges } from '@angular/core';
+import { ProductsList } from '../../models/products-list.model';
+import { Product } from '../../models/product.model';
+import { OdooService } from '../../services/odoo.service';
 
 @Component({
   selector: 'app-cart',
