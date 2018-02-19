@@ -2,6 +2,7 @@ import { Component, OnInit, SimpleChanges } from '@angular/core';
 import { ProductsList } from '../../models/products-list.model';
 import { Product } from '../../models/product.model';
 import { OdooService } from '../../services/odoo.service';
+import { OrdersList } from '../../models/orders-list.model';
 
 @Component({
   selector: 'app-cart',
@@ -11,7 +12,7 @@ import { OdooService } from '../../services/odoo.service';
 export class CartComponent implements OnInit {
 
   id: string;
-  shoppingCart: ProductsList;
+  shoppingCart: OrdersList;
 
   constructor(private odoo: OdooService) {}
 

@@ -12,7 +12,11 @@ export class OrdersComponent implements OnInit {
   ordersList: OrdersList;
 
   constructor(private odoo: OdooService) {
-    this.ordersList = this.odoo.ordersList;
+    this.odoo.getOrdersList()
+      .subscribe(res => {
+        console.log('Orders list: ', res);
+        this.ordersList = res;
+      })
   }
 
   ngOnInit() {

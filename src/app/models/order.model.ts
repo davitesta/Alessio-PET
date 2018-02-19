@@ -1,16 +1,14 @@
-import { ProductsList } from "./products-list.model";
-
 export class Order {
     id: number;
-    productsList: ProductsList;
-    description: string;
+    name: string;
+    dateOrder: Date;
 
     constructor(id: number,
-        productsList: ProductsList,
-        description?: string) {
+        name: string,
+        dateOrder: Date) {
             this.id = id;
-            this.productsList = productsList;
-            this.description = description;
-        }
+            this.name = name;
+            this.dateOrder = dateOrder;
+    }
 
 }

@@ -12,29 +12,6 @@ import { Order } from '../models/order.model';
 @Injectable()
 export class OdooService {
 
-  /* **************************************** */
-  resource: Array<Order> = [
-    {
-      id: 3,
-      productsList: new ProductsList([
-        new Product(0, 'A', 'none'),
-        new Product(1, 'B', 'none')]),
-      description: 'none'
-    },
-    {
-      id: 4, productsList: new ProductsList([
-        new Product(2, 'C', 'none')
-      ]),
-      description: 'none'
-    },
-  ];
-
-  ordersList: OrdersList = new OrdersList(this.resource)
-
-  /* **************************************** */
-
-  shoppingCart: ProductsList = new ProductsList([]);
-
   constructor(private odooRPC: OdooRPCService) {
     this.odooRPC.init({
       odoo_server: "http://localhost:8069",
@@ -59,31 +36,42 @@ export class OdooService {
     })
   }
 
-  getProduct(id): Observable<Product> {   //più correttamente da eseguire con una chiamata ad Odoo
+  getProduct(id): Observable<Product> {
     console.log(`Getting product ${id}...`)
-    return this.getProductsList()
-      .map((res) => {
-        let product = res.items.filter(item => item.id == id);
-        return new Product(product[0].id,
-          product[0].name,
-          product[0].description)
-      })
+    return new Observable(observer => {
+      this.odooRPC.call('product.product', 'search_read', [[['id', '=', `${id}`]]], {})
+        .then(res => {
+          console.log('Odoo product: ', res);
+          observer.next(res);
+        })
+    }).map((res) => {
+      return new Product(res[0].id,
+        res[0].name,
+        res[0].description)
+    })
   }
 
   getOrdersList(): Observable<OrdersList> {
     return new Observable((observer) => {
-      observer.next(this.ordersList)
+      this.odooRPC.call('sale.order', 'search_read', [[['state', '=', 'sale']]], {})
+        .then(res => {
+          console.log('Odoo sale orders: ', res);
+          observer.next(res);
+        })
+    }).map(res => {
+      return new OrdersList(res);
     })
   }
 
-  getOrder(id): Observable<any> {
+  getOrder(id): Observable<Order> {
     return this.getOrdersList()
-      .map((res) => {
-        return res.items.filter(item => item.id == id)
-      })
+      .map(res =>
+        res.items.filter(item => item.id == id)
+          .pop()
+      );
   }
 
-  getShoppingCart(): Observable<ProductsList> {
+  getShoppingCart(): Observable<OrdersList> {
     return new Observable((observer => {
       this.odooRPC.call('sale.order.line', 'search_read', [[['state', '=', 'draft']]], {})
         .then((res) => {
@@ -91,7 +79,7 @@ export class OdooService {
           observer.next(res);
         })
     })).map((res) => {
-      return new ProductsList(res)
+      return new OrdersList(res)
     })
   }
 
