@@ -26,7 +26,7 @@ export class OdooService {
 
   getProductsList(): Observable<ProductsList> {
     return new Observable((observer) => {
-      this.odooRPC.call('product.product', 'search_read', {}, { limit: 0 })
+      this.odooRPC.call('product.product', 'search_read', {}, { })
         .then((res) => {
           console.log('Odoo products: ', res);
           observer.next(res)
@@ -37,18 +37,11 @@ export class OdooService {
   }
 
   getProduct(id): Observable<Product> {
-    console.log(`Getting product ${id}...`)
-    return new Observable(observer => {
-      this.odooRPC.call('product.product', 'search_read', [[['id', '=', `${id}`]]], {})
-        .then(res => {
-          console.log('Odoo product: ', res);
-          observer.next(res);
-        })
-    }).map((res) => {
-      return new Product(res[0].id,
-        res[0].name,
-        res[0].description)
-    })
+    return this.getProductsList()
+      .map(res =>
+        res.items.filter(item => item.id == id)
+          .pop()
+      );
   }
 
   getOrdersList(): Observable<OrdersList> {

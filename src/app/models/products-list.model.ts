@@ -9,9 +9,19 @@ export class ProductsList {
 
     decodeList(items) {
         return items.map(
-            (item) => new Product(item.id,
+            (item) => new Product(
+                item.id,
                 item.name,
-                item.description)
+                item.list_price,
+                item.availability,
+                item.company_id,
+                item.delivery_count,
+                item.description_sale,
+                item.image_small,
+                item.image_medium,
+                item.image_large,
+                item.sale_ok
+            )
         )
     }
 }

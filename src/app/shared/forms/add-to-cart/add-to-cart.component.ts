@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class AddToCartComponent implements OnInit {
 
   @Input() item: Product;
-  qty: number;
+  qty: number = 1;
 
   constructor(private odoo: OdooService,
     private router: Router) { }
