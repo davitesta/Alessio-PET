@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.odoo.getProductsList()
       .subscribe((res) => {
-        console.log(`Products list: `, res)
+        console.log(`Items list: `, res)
         this.productsList = res;
       },
       (err) => {

@@ -1,3 +1,11 @@
-<div (click)="clickHandler()">
-  {{item | json}}
-</div>
+<div>
+  <div>
+    <h3>Ordine # {{order.name}}</h3>
+    Effettuato il: {{order.dateOrder}}<br>
+    Totale: {{order.amountTotal}}€<br>
+  </div>
+  <div>
+    <app-order-line-list [orderLineList]="order.orderLines"></app-order-line-list>
+  </div>
+  <button (click)="clickHandler()">Dettagli ordine</button><br>
+</div> 

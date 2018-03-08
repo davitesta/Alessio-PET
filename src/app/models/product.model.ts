@@ -5,15 +5,33 @@ export class Product {
     name: string;
     listPrice: number;
     availability: any;
-    companyId: number;
+    companyId: [number, string];
     deliveryCount: number;
     descriptionSale: string;
-    imageSmall: any;
-    imageMedium: any;
-    imageLarge: any;
-    isSaleable: boolean;
+    largeImage: any;    /*  base64 encoded  */
+    smallImage: any;
+    mediumImage: any;
+    saleable: boolean;
+    purchasable: boolean;
 
     constructor(
+        resource: any
+    ) {
+        this.id = resource.id;
+        this.name = resource.name;
+        this.listPrice = resource.list_price;
+        this.availability = resource.availability;
+        this.companyId = resource.company_id;
+        this.deliveryCount = resource.delivery_count;
+        this.descriptionSale = resource.description_sale;
+        this.largeImage = resource.image;
+        this.smallImage = resource.image_small;
+        this.mediumImage = resource.image_medium;
+        this.saleable = resource.sale_ok;
+        this.purchasable = resource.purchase_ok;
+    }
+}
+        /*
         id,
         name,
         listPrice,
@@ -21,21 +39,9 @@ export class Product {
         companyId,
         deliveryCount,
         descriptionSale,
-        imageSmall,
-        imageMedium,
-        imageLarge,
-        isSaleable
-    ) {
-        this.id = id;
-        this.name = name;
-        this.listPrice = listPrice;
-        this.availability = availability;
-        this.companyId = companyId;
-        this.deliveryCount = deliveryCount;
-        this.descriptionSale = descriptionSale;
-        this.imageSmall = imageSmall;
-        this.imageMedium = imageMedium;
-        this.imageLarge = imageLarge;
-        this.isSaleable = isSaleable
-    }
-}
+        largeImage,
+        smallImage,
+        mediumImage,
+        saleable,
+        purchasable
+        */

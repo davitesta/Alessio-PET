@@ -1,3 +1,13 @@
-<div *ngIf="item">
-  {{item | json}}
+<div *ngIf="order && customer">
+  <h3>Ordine # {{order.name}}</h3>
+  Effettuato il: {{order.dateOrder}}<br>
+  Totale IVA esclusa: {{order.amountUntaxed}}€<br>
+  IVA: {{order.amountTax}}€<br>
+  Totale: {{order.amountTotal}}€<br>
+  Data di conferma: {{order.confirmationDate}}<br>
+  Metodo di pagamento: {{order.paymentAcquirerId[1]}}<br>
+  Indirizzo di consegna: {{customer.contactAddress}}<br>
+  Indirizzo di fatturazione: {{customer.contactAddress}}<br>
+  <br>
+  <app-order-line-details *ngFor="let orderLineId of order.orderLines" [orderLineId]="orderLineId"></app-order-line-details>
 </div>

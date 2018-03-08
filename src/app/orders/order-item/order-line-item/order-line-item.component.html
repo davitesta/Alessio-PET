@@ -1,0 +1,9 @@
+<div *ngIf="orderLine && item" (click)="clickHandler()">
+  <h4>Prodotto: {{orderLine.name}}</h4>
+  <img [src]="'data:image/jpg;base64,' | concat:item.smallImage | sanitizer"><br>
+  Quantità ordinata: {{orderLine.productUomQty}} unità<br>
+  Totale IVA esclusa: {{orderLine.priceTotal}}€<br>
+</div>
+
+
+

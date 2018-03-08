@@ -18,7 +18,7 @@ export class CartComponent implements OnInit {
 
   ngOnInit() {
     this.odoo.getShoppingCart()
-      .subscribe(res => {
+      .subscribe((res) => {
         console.log(`Shopping cart: `, res)
         this.shoppingCart = res;
       })

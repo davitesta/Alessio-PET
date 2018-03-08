@@ -3,5 +3,5 @@
     <label>Quantity</label>
     <input [(ngModel)]="qty" type="text" name="qty">
   </div>
-  <button type="submit">Add to cart</button>
+  <button [disabled]="item?.saleable === false" type="submit">Add to cart</button>
 </form>

@@ -1,3 +1,11 @@
 <div *ngIf="item">
-  {{item | json}}
+  <img [src]="'data:image/jpg;base64,' | concat:item.mediumImage| sanitizer">
+  <h3>{{item.name}}</h3>
+  {{item.listPrice}}€
+  <div>
+    <p>{{item.descriptionSale}}</p>
+  </div>
+  <div *ngIf="item.saleable === false">
+    <p>Al momento non disponibile</p>
+  </div>
 </div>

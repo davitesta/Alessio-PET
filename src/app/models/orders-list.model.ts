@@ -9,10 +9,7 @@ export class OrdersList {
 
     decodeList(items) {
         return items.map(
-            (item) => new Order(item.id,
-                item.name,
-                item.date_order
-            )
+            (item) => new Order(item)
         )
     }
 

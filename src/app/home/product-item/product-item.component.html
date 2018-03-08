@@ -1,3 +1,10 @@
-<div (click)="clickHandler()">
-  {{item | json}}
+<div>
+  <img [src]="'data:image/jpg;base64,' | concat:item.mediumImage | sanitizer">
+  <h3>{{item.name}}</h3>
+  {{item.listPrice}}€
+  <div>
+    <p>{{item.descriptionSale}}</p>
+  </div>
+  <button (click)="clickHandler()">Go to details</button>
+  <br>
 </div>

@@ -1,0 +1,11 @@
+<div *ngIf="orderLine && item">
+  <img [src]="'data:image/jpg;base64,' | concat:item.smallImage | sanitizer"><br>
+  Quantità ordinata: {{orderLine.productUomQty}} unità<br>
+  Prezzo singolo: {{orderLine.priceUnit}}€<br>
+  IVA: {{orderLine.priceTax}}€<br>
+  Totale IVA esclusa: {{orderLine.priceSubtotal}}€<br>
+  Totale: {{orderLine.priceTotal}}<br>
+  Tempo di consegna: {{orderLine.customerLead}} giorni<br>
+  <br>
+</div>
+
